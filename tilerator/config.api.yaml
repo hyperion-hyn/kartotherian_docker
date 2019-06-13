@@ -83,6 +83,6 @@ services:
       uiOnly: true
 
       redis: {
-        'host': 'redis',
+        'host': '{env(TILERATOR_REDIS_HOST,redis)}',
         'port': 6379
       }
