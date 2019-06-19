@@ -23,15 +23,13 @@ RUN git clone https://github.com/QwantResearch/tilerator.git /opt/tilerator \
 
 RUN git clone https://github.com/hyperion-hyn/kartotherian_config.git /opt/kartotherian_config \
     && cd /opt/kartotherian_config \
-    && git checkout 0af5aba6e6657c8b42842704947108c33934197a
+    && git checkout 2f03cd1babdf220788b7470ebd95a527a627d8dc
 
 COPY config*.yaml /opt/tilerator/
 COPY gen_tiles.sh /gen_tiles.sh
 
 RUN mkdir -p /etc/tilerator
 RUN ln -sf /opt/kartotherian_config/tilerator/data_tm2source_base.yml /etc/tilerator
-RUN ln -sf /opt/kartotherian_config/tilerator/data_tm2source_poi.yml /etc/tilerator
-RUN ln -sf /opt/kartotherian_config/tilerator/data_tm2source_lite.yml /etc/tilerator
 
 RUN chmod +x /gen_tiles.sh \
     && ln -sf /opt/tilerator/config*.yaml /etc/tilerator \

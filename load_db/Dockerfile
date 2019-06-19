@@ -18,16 +18,16 @@ RUN apt-get update && \
         osmosis \
         jq \
 # install imposm
-    && wget https://github.com/omniscale/imposm3/releases/download/v0.6.0-alpha.4/imposm-0.6.0-alpha.4-linux-x86-64.tar.gz \
-    && tar xvfz imposm-0.6.0-alpha.4-linux-x86-64.tar.gz \
-    && ln -sf /imposm-0.6.0-alpha.4-linux-x86-64/imposm3 /usr/local/bin/imposm3 \
+    && wget https://github.com/omniscale/imposm3/releases/download/v0.8.1/imposm-0.8.1-linux-x86-64.tar.gz \
+    && tar xvfz imposm-0.8.1-linux-x86-64.tar.gz \
+    && ln -sf /imposm-0.8.1-linux-x86-64/imposm3 /usr/local/bin/imposm3 \
     && wget -O /usr/local/bin/pgfutter https://github.com/lukasmartinelli/pgfutter/releases/download/v1.1/pgfutter_linux_amd64 \
     && chmod +x /usr/local/bin/pgfutter \
     && pip install pipenv==2018.11.26
 
-RUN git clone https://github.com/QwantResearch/kartotherian_config.git ${MAIN_DIR}/config \
+RUN git clone https://github.com/hyperion-hyn/kartotherian_config.git ${MAIN_DIR}/config \
     && cd ${MAIN_DIR}/config \
-	&& git checkout 0af5aba6e6657c8b42842704947108c33934197a \
+	&& git checkout 2f03cd1babdf220788b7470ebd95a527a627d8dc \
 	&& git submodule update --init
 
 WORKDIR ${MAIN_DIR}/config/import_data
