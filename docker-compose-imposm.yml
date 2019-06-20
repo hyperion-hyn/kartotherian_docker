@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  load_db:
+    build: ./load_db
+    image: 074210164173.dkr.ecr.ap-southeast-1.amazonaws.com/hyn/pipeline-imposm:latest
+    environment:
+      - INVOKE_CONFIG_FILE=config.yml
+      - INVOKE_PG_HOST=postgres
+      - INVOKE_PG_PASSWORD=gis
+    volumes:
+      - input_data:/data/input
+      - imposm_generated_data:/data/generated
+      - update_tiles_data:/data/update_tiles_data
+
+volumes: 
+  update_tiles_data:
+    driver_opts:
+      type: none
+      device: ${PWD}/data/update_tiles_data
+      o: bind
+  input_data:
+    driver_opts:
+      type: none
+      device: ${PWD}/data/input_data
+      o: bind
+  imposm_generated_data:
+    driver_opts:
+      type: none
+      device: ${PWD}/data/imposm_generated_data
+      o: bind

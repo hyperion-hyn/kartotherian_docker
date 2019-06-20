@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  tilerator:
+    build: ./tilerator
+    image: 074210164173.dkr.ecr.ap-southeast-1.amazonaws.com/hyn/pipeline-tilerator:latest
+    depends_on:
+      - redis
+    environment:
+      - TILERATOR_MODE=api # This service will not process tiles
+      - TILERATOR_OSMDB_HOST=postgres
+      - TILERATOR_OSMDB_PSWD=gis
+      - TILERATOR_CASSANDRA_SERVERS=cassandra
+    ports:
+      - "16534:80"
+
+  tilerator-worker:
+    image: 074210164173.dkr.ecr.ap-southeast-1.amazonaws.com/hyn/pipeline-tilerator:latest
+    environment:
+      - TILERATOR_NUM_WORKERS=ncpu # Number of workers (or ncpu by default)
+      - TILERATOR_OSMDB_HOST=postgres
+      - TILERATOR_OSMDB_PSWD=gis
+      - TILERATOR_CASSANDRA_SERVERS=cassandra
+      - TILERATOR_REDIS_HOST=redis
+    depends_on:
+      - redis
+  
+  redis:
+    image: redis:latest
+    command: redis-server --appendonly yes # to enable persistence
+    volumes:
+      - "redisdata:/data"
+    ports: 
+      - "6379:6379"
+
+volumes: 
+  redisdata:
