@@ -70,10 +70,18 @@ services:
       sources: /etc/tilerator/sources.yaml
 
       modules:
+      - "tilelive-http"
+      - "tilelive-tmstyle"
+      - "@kartotherian/autogen"
+      - "@kartotherian/babel"
       - "@kartotherian/cassandra"
+      - "@kartotherian/layermixer"
       - "@kartotherian/overzoom"
+      - "@kartotherian/postgres"
       - "@kartotherian/substantial"
       - "@kartotherian/tilelive-tmsource"
+      - "@kartotherian/tilelive-vector"
+      - "@mapbox/mbtiles"
 
       # If true, do not enable admin interface
       daemonOnly: false

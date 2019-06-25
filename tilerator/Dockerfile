@@ -1,6 +1,7 @@
 FROM node:8-stretch@sha256:fec2d6c325686988c4e0bf1b17cd32954422333d24ed6a97c28c8570054a6e1d
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 RUN apt-get update && \
     apt-get install -y \
@@ -19,11 +20,12 @@ RUN apt-get update && \
 RUN git clone https://github.com/QwantResearch/tilerator.git /opt/tilerator \
     && cd /opt/tilerator \
     && git checkout 64b69c064aae15d474bd61da2c6bc35140f118f8 \
-    && npm install --production
+    # && npm install --production
+    && npm install
 
 RUN git clone https://github.com/hyperion-hyn/kartotherian_config.git /opt/kartotherian_config \
     && cd /opt/kartotherian_config \
-    && git checkout 2f03cd1babdf220788b7470ebd95a527a627d8dc
+    && git checkout 57ff7040d74a91be8ff543fccc31895c254ba894
 
 COPY config*.yaml /opt/tilerator/
 COPY gen_tiles.sh /gen_tiles.sh
