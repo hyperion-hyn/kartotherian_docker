@@ -27,7 +27,7 @@ RUN apt-get update && \
 
 RUN git clone https://github.com/hyperion-hyn/kartotherian_config.git ${MAIN_DIR}/config \
     && cd ${MAIN_DIR}/config \
-	&& git checkout 397e7d409fe29d51c295f60a3404da8af941bc27 \
+	&& git checkout 8fe1dd8c317c90ed8aa4fd509e13a4d01c6643fb \
 	&& git submodule update --init
 
 WORKDIR ${MAIN_DIR}/config/import_data
