@@ -5,7 +5,7 @@ num_workers: '{env(TILERATOR_NUM_WORKERS,ncpu)}'
 
 # Log error messages and gracefully restart a worker if v8 reports that it
 # uses more heap (note: not RSS) than this many mb.
-worker_heap_limit_mb: 2048
+worker_heap_limit_mb: 1500
 
 worker_heartbeat_timeout: '{env(TILERATOR_WORKER_HEARTBEAT_TIMEOUT,30000)}'
 

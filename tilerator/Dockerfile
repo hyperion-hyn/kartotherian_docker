@@ -17,15 +17,15 @@ RUN apt-get update && \
         redis-tools \
     && npm i npm@latest -g
 
-RUN git clone https://github.com/QwantResearch/tilerator.git /opt/tilerator \
+RUN git clone https://github.com/hyperion-hyn/tilerator.git /opt/tilerator \
     && cd /opt/tilerator \
-    && git checkout 64b69c064aae15d474bd61da2c6bc35140f118f8 \
+    && git checkout e108aacd3536984b5669c36a49b498f679b9cfc1 \
     # && npm install --production
     && npm install
 
 RUN git clone https://github.com/hyperion-hyn/kartotherian_config.git /opt/kartotherian_config \
     && cd /opt/kartotherian_config \
-    && git checkout 8fe1dd8c317c90ed8aa4fd509e13a4d01c6643fb
+    && git checkout 33138b02f838fa2187f56ca2ea25b187663d0724
 
 COPY config*.yaml /opt/tilerator/
 COPY gen_tiles.sh /gen_tiles.sh
